@@ -1,17 +1,10 @@
 import { IPlans } from "../../domain/interface/IPlans";
+import { PlansDTO } from "../../dtos/PlansDTO";
 
 export class GetPlanByIdUseCase {
   constructor(private plansRepository: IPlans) {}
 
-  async execute(id:string) {
-    try {
-      const plan = await this.plansRepository.getPlanById(id);
-      if (!plan) {
-        console.error("Plano Não Encontrado!");
-      }
-      return plan;
-    } catch (error) {
-      console.error(error);
-    }
+  async execute(id: string): Promise<PlansDTO | null> {
+    return this.plansRepository.getPlanById(id);
   }
 }

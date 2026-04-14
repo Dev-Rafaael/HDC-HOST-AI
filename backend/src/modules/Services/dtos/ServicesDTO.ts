@@ -1,6 +1,6 @@
 export interface ServicesDTO {
-  id: String;
-  icon: String;
-  title: String;
-  desc: String;
+  id: string;
+  icon: string;
+  title: string;
+  desc: string;
 }

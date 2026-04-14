@@ -9,8 +9,7 @@ export class GenerateDescriptionController {
       const result = await this.generateDescription.execute(req.body);
 
       return res.json({ reply: result });
-
-    } catch (error) {
+    } catch {
       return res.status(500).json({
         error: "Erro ao gerar descrição",
       });

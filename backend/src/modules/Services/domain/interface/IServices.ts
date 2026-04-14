@@ -1,6 +1,6 @@
-import { ServicesDTO } from "../../dtos/ServicesDTO"
+import { ServicesDTO } from "../../dtos/ServicesDTO";
 
-export interface IServices{
-    listAll():Promise<ServicesDTO>
-    getPlanById(id:string):Promise<ServicesDTO>
+export interface IServices {
+  listAll(): Promise<ServicesDTO[]>;
+  getServiceById(id: string): Promise<ServicesDTO | null>;
 }

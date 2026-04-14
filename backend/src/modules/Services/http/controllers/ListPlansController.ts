@@ -6,10 +6,10 @@ export class ListServicesController {
 
   async handle(req: Request, res: Response) {
     try {
-      const plans = await this.getServicesUseCase.execute();
-      res.status(200).json(plans);
-    } catch (error) {
-      res.status(400).json({ msg: "Erro ao encontrar Servico" });
+      const services = await this.getServicesUseCase.execute();
+      return res.status(200).json(services);
+    } catch {
+      return res.status(400).json({ msg: "Erro ao encontrar Servico" });
     }
   }
 }

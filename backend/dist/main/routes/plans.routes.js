@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const makeListPlansController_1 = require("../factories/Plans/makeListPlansController");
+const makeGetPlanByIdController_1 = require("../factories/Plans/makeGetPlanByIdController");
+const plansRoutes = (0, express_1.Router)();
+const ListPlans = (0, makeListPlansController_1.makeListPlansController)();
+const getPlanById = (0, makeGetPlanByIdController_1.makeGetPlanByIdController)();
+plansRoutes.get("/", (req, res) => ListPlans.handle(req, res));
+plansRoutes.get("/:id", (req, res) => getPlanById.handle(req, res));
+exports.default = plansRoutes;

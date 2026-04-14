@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const makeSuggestPlanController_1 = require("../factories/IA/makeSuggestPlanController");
+const makeGenerateDescriptionController_1 = require("../factories/IA/makeGenerateDescriptionController");
+const aiRoutes = (0, express_1.Router)();
+const suggestController = (0, makeSuggestPlanController_1.makeSuggestPlanController)();
+const descriptionController = (0, makeGenerateDescriptionController_1.makeGenerateDescriptionController)();
+aiRoutes.post("/suggest", (req, res) => suggestController.handle(req, res));
+aiRoutes.post("/description", (req, res) => descriptionController.handle(req, res));
+exports.default = aiRoutes;

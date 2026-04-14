@@ -20,9 +20,7 @@ export class GenerateDescriptionUseCase {
       const result = await this.aiClient.generate(prompt);
 
       return result || "Não foi possível gerar descrição";
-
-    } catch (error) {
-      console.error("Erro GenerateDescription:", error);
+    } catch {
       throw new Error("Erro ao gerar descrição");
     }
   }
