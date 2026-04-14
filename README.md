@@ -209,7 +209,7 @@ OPENROUTER_API_KEY=...
 ### Frontend
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:3333
+NEXT_PUBLIC_API_URL=https://*******.onrender.com
 ```
 
 ## O Que Este Projeto Demonstra
