@@ -11,7 +11,6 @@ export class GenerateDescriptionUseCase {
 
       Plano:
       - Velocidade: ${data.velocidade}
-      - Preço: R$${data.preco}
       - Benefícios: ${data.beneficios}
 
       Gere uma descrição comercial curta e persuasiva.

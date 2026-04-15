@@ -10,7 +10,6 @@ export async function suggestPlanIA(
 
 export async function generateDescription(data: {
   velocidade: string;
-  preco: number;
   beneficios: string;
 }): Promise<{ reply: string }> {
   const response = await api.post("/ai/description", data);

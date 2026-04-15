@@ -26,6 +26,7 @@ describe("SuggestPlanUseCase", () => {
           highlight: false,
         },
       ]),
+      getPlanById: vi.fn(async (id: string) => null),
     };
 
     const useCase = new SuggestPlanUseCase(aiClient, plansRepository);

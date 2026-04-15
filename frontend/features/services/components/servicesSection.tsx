@@ -19,13 +19,16 @@ export function ServicesSection({ compact = false }: ServicesSectionProps) {
 
   const displayedServices = compact ? services.slice(0, 3) : services;
 
-  async function handleGenerate(serviceId: string, title: string, description: string) {
+  async function handleGenerate(
+    serviceId: string,
+    title: string,
+    description: string,
+  ) {
     setLoadingIds((current) => ({ ...current, [serviceId]: true }));
 
     try {
       const data = await generateDescription({
         velocidade: "Infra otimizada",
-        preco: 0,
         beneficios: `${title}. ${description}`,
       });
 
@@ -33,7 +36,8 @@ export function ServicesSection({ compact = false }: ServicesSectionProps) {
     } catch {
       setDescriptions((current) => ({
         ...current,
-        [serviceId]: "Não foi possível gerar um resumo expandido neste momento.",
+        [serviceId]:
+          "Não foi possível gerar um resumo expandido neste momento.",
       }));
     } finally {
       setLoadingIds((current) => ({ ...current, [serviceId]: false }));
@@ -50,15 +54,20 @@ export function ServicesSection({ compact = false }: ServicesSectionProps) {
         />
 
         <div className="grid gap-3 sm:grid-cols-3">
-          {serviceBenefits.map((benefit, index) => (
+          {serviceBenefits.map((item, index) => (
             <div
-              key={benefit}
-              className={`soft-card fade-up rounded-[24px] p-5 ${index > 0 ? `stagger-${index}` : ""}`}
+              key={item.label}
+              className={`soft-card fade-up rounded-[24px] p-5 ${
+                index > 0 ? `stagger-${index}` : ""
+              }`}
             >
               <p className="text-sm font-semibold uppercase tracking-[0.12em] text-cyan-200">
-                Valor
+                {item.label}
               </p>
-              <p className="mt-3 text-slate-100">{benefit}</p>
+
+              <p className="mt-3 text-slate-100 font-medium">{item.benefit}</p>
+
+              <p className="mt-2 text-sm text-slate-400">{item.value}</p>
             </div>
           ))}
         </div>
@@ -70,7 +79,11 @@ export function ServicesSection({ compact = false }: ServicesSectionProps) {
         {!isLoading && error ? (
           <div className="status-error flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <span>{error}</span>
-            <button type="button" onClick={() => void reload()} className="secondary-button">
+            <button
+              type="button"
+              onClick={() => void reload()}
+              className="secondary-button"
+            >
               Tentar novamente
             </button>
           </div>
@@ -93,7 +106,9 @@ export function ServicesSection({ compact = false }: ServicesSectionProps) {
                   <button
                     type="button"
                     className="ghost-button"
-                    onClick={() => handleGenerate(service.id, service.title, service.desc)}
+                    onClick={() =>
+                      handleGenerate(service.id, service.title, service.desc)
+                    }
                     disabled={loadingIds[service.id]}
                   >
                     {loadingIds[service.id] ? "Gerando..." : "Expandir com IA"}
